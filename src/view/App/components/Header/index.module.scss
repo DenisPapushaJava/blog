@@ -1,0 +1,38 @@
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  height: 80px;
+  padding: 13px 22px;
+  margin-bottom:26px;
+  font-size: 18px;
+  font-family: Inter;
+
+
+  & > a {
+    color: #000000;
+  }
+
+  &Button {
+    display: flex;
+
+    &Active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 51px;
+      width: 109px;
+      margin-left: 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      color: #000;
+      transition: all 0.2s;
+
+      &:hover {
+        border: 1px solid #52C41A;
+        color: #52C41A;
+      }
+    }
+  }
+}
