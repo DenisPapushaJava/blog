@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getCurrentUser } from '../../store/user-slice.js';
 
-import SignIn from './pages/sign-in.jsx';
-import SignUp from './pages/sign-up.jsx';
+import { SignIn } from './pages/sign-in.jsx';
+import SignUpForm from './components/user-foms/sign-up-form.jsx';
 
 const App = () => {
 
@@ -23,7 +23,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Article />} />
         <Route path='/sign-in' element={<SignIn />} />
-        <Route path='/sign-up' element={<SignUp />} />
+        <Route path='/sign-up' element={<SignUpForm />} />
         <Route path='*' element={<Article />} />
       </Routes>
 
