@@ -10,7 +10,7 @@ const ErrorMessage = () => {
   const error = useCallback(() => {
     messageApi.open({
       type: 'error',
-      content: `${err.statusText}`,
+      content:  `${err.statusText}`,
       style: {
         backgroundColor: 'tomato',
         width: '50%',
@@ -21,7 +21,7 @@ const ErrorMessage = () => {
   }, [err.statusText, messageApi]);
 
   useEffect(() => {
-    if (status === 'rejected') {
+    if (status === 'rejected' && err.statusText != undefined) {
       error();
     }
   }, [status, error]);
