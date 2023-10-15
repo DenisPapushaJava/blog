@@ -1,10 +1,10 @@
+import { Button } from 'antd';
 import { useForm } from 'react-hook-form';
 import styles from './style.module.scss';
-import { Link } from 'react-router-dom';
-import { Button } from 'antd';
+import validUrl from 'valid-url';
 
 
-const SignUpForm = ({ submit }) => {
+const EditProfileForm = ({ submit, user }) => {
   const {
     register,
     formState: {
@@ -12,19 +12,25 @@ const SignUpForm = ({ submit }) => {
     },
     handleSubmit,
     reset,
-    watch,
-  } = useForm();
-  const password = watch('password', '');
+  } = useForm({
+    defaultValues: {
+      username: user?.username,
+      email: user?.email,
+      url: user?.image,
+    },
+  });
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-  const onSubmit = (data) => {
-    submit(data);
 
+  const onSubmit = (data) => {
+    console.log(data);
+    submit(data);
+    reset();
   };
 
   return (
     <div className={styles.container}>
       <h3 className={styles.containerTitle}>
-        Create new account
+        Edit Profile
       </h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label className={styles.containerLabel}>
@@ -90,37 +96,29 @@ const SignUpForm = ({ submit }) => {
         </label>
         <label className={styles.containerLabel}>
           <p className={styles.containerInputName}>
-            Repeat Password
+            Avatar image (url)
           </p>
-          <input placeholder='Password'
-                 type='password'
-                 autoComplete='current-password'
-                 {...register('repeatPassword', {
-                   required: 'Поле обязательно к заполнению',
-                   validate: (value) => value === password || 'Пароли должны совпадать',
-                 })}
+          <input placeholder='Avatar image'
+                 {...register('url', {
+                     required: 'Поле обязательно к заполнению',
+                     validate: {
+                       validUrl: (value) => validUrl.isWebUri(value) ? true : 'Некорректный URL',
+                     },
+                   },
+                 )}
           />
-          {errors.repeatPassword && <div className={styles.containerLabelError}>{errors.repeatPassword.message}</div>}
+          {errors.url && <div className={styles.containerLabelError}>{errors.url.message}</div>}
         </label>
-        <label className={styles.containerLabel}>
-          <input type='checkbox'
-                 {...register('agreement', {
-                   required: 'Вы должны согласиться с обработкой ваших данных',
-                 })}
-          /> <span>I agree to the processing of my personal
-        information</span>
-          {errors.agreement && <div className={styles.containerLabelError}>{errors.agreement.message}</div>}
-        </label>
+
+
         <Button type='primary'
                 className={styles.containerButton}
                 htmlType='submit'
                 size='large'
-        >Create</Button>
-        <p className={styles.containerFooter}>
-          Already have an account?<Link to='/sign-in'> Sign In.</Link>
-        </p>
+        >Save</Button>
+
       </form>
     </div>
   );
 };
-export default SignUpForm;
+export default EditProfileForm;

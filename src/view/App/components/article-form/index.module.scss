@@ -1,0 +1,124 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 938px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 48px 33px;
+  margin: 60px auto;
+  box-shadow: 0 4px 12px #00000026;
+
+  & > form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &Label {
+    margin-bottom: 18px;
+
+    & > span {
+      font-family: Roboto;
+    }
+
+    &Tag > input {
+      width: 300px;
+      height: 40px;
+      border-radius: 4px;
+      margin-right: 17px;
+      border: 1px solid #D9D9D9;
+
+      &:focus {
+        outline: red;
+        border: 1px solid #1890FF;
+      }
+    }
+
+    & > input:not([type="text"]) {
+      width: 100%;
+      height: 40px;
+      border-radius: 4px;
+      border: 1px solid #D9D9D9;
+
+      &:focus {
+        outline: red;
+        border: 1px solid #1890FF;
+      }
+    }
+
+    &Text {
+      font-family: 'Roboto', sans-serif;
+      width: 100%;
+      height: 168px;
+      border-radius: 4px;
+      resize: none;
+      border: 1px solid #D9D9D9;
+
+      &:focus {
+        outline: red;
+        border: 1px solid #1890FF;
+      }
+
+    }
+
+    &Error {
+      font-family: Roboto;
+      font-size: 14px;
+      color: #F5222D;
+      margin: 3px 0;
+    }
+  }
+
+  &Title {
+    font-family: 'Roboto', serif;
+    font-size: 20px;
+    align-self: center;
+    margin-bottom: 21px;
+  }
+
+  &InputName {
+    font-family: 'Roboto';
+    font-size: 14px;
+    margin-bottom: 2px;
+
+  }
+
+  &Button {
+    margin-top: 16px;
+    height: 40px;
+    width: 318px;
+  }
+
+  &Tag {
+    display: flex;
+
+    &List {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+    }
+
+    &Add {
+      position: relative;
+      left: 400px;
+      top: -42px;
+    }
+
+    &Add0 {
+      position: relative;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  &Footer {
+    font-family: 'Roboto';
+    align-self: center;
+    margin-top: 10px;
+    color: #8C8C8C;
+
+    & > a {
+      color: #1890FF;
+    }
+  }
+}

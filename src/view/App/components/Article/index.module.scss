@@ -4,7 +4,7 @@
   height: 140px;
   width: 940px;
   background-color: #fff;
-  margin: 0 auto 26px;
+  margin: 0 auto;
   border-radius: 5px;
   padding: 15px 15px 24px 15px;
   box-shadow: 0 4px 12px #00000026;
@@ -12,11 +12,21 @@
   &Left {
     max-width: 682px;
 
+    &Text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     &Title {
       display: flex;
       align-items: center;
       font-family: 'Inter', serif;
       font-size: 20px;
+
+      &Text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
       & > h1 > a {
         color: #1890FF;
@@ -42,17 +52,40 @@
       color: rgba(0, 0, 0, 0.75);
       font-size: 12px;
     }
+
   }
 
   &Right {
     display: flex;
-    margin-bottom:auto ;
-    &Info{
-align-self: center;
+    flex-direction: column;
+    margin-bottom: auto;
+
+    &Top {
+      display: flex;
+    }
+
+    &Bottom {
+      display: flex;
+      margin-top: 12px;
+
+      &Edit {
+        font-family: 'Inter';
+        color: #52C41A;
+        padding: 6px 20px;
+        border: 1px solid #52C41A;
+        border-radius: 5px;
+        margin-left: 12px;
+
+      }
+    }
+
+    &Info {
+      align-self: center;
+
       &Name {
         font-family: 'Inter';
         font-size: 18px;
-        margin-bottom:5px;
+        margin-bottom: 5px;
       }
 
       &Date {
@@ -60,10 +93,26 @@ align-self: center;
         font-size: 12px;
       }
     }
+
     &Avatar {
       height: 46px;
       width: 46px;
       margin-left: 12px;
+    }
+  }
+
+  &Faforite {
+    display: flex;
+    margin-left: 13px;
+    height: 26px;
+    width: 26px;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: #EBEEF3;
     }
   }
 }

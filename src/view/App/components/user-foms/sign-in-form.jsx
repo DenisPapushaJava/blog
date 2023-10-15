@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 import { Button } from 'antd';
 
 
-const SignInForm = ({submit}) => {
+const SignInForm = ({ submit }) => {
   const {
     register,
     formState: {
@@ -32,6 +32,8 @@ const SignInForm = ({submit}) => {
             Email address
           </p>
           <input placeholder='Email address'
+                 type='text'
+                 autoComplete='username'
                  {...register('email', {
                      required: 'Поле обязательно к заполнению',
                      pattern: {
@@ -49,6 +51,7 @@ const SignInForm = ({submit}) => {
           </p>
           <input placeholder='Password'
                  type='password'
+                 autoComplete='current-password'
                  {...register('password', {
                      required: 'Поле обязательно к заполнению',
                    },

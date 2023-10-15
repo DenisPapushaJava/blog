@@ -15,7 +15,7 @@ const SignIn = () => {
   const err = useSelector((state) => state.user.error);
 
   const fromPage = location.state?.from?.pathname || '/';
-  console.log('status', err);
+
   useEffect(() => {
     if (status === 'resolved' && isCreateUser) {
       dispatch(isSetNotUserCreate());

@@ -5,22 +5,35 @@
   background-color: #fff;
   height: 80px;
   padding: 13px 22px;
-  margin-bottom:26px;
+  margin-bottom: 26px;
   font-size: 18px;
   font-family: Inter;
 
 
   & > a {
     color: #000000;
-    &:hover{
-     text-decoration: underline;
+
+    &:hover {
+      text-decoration: underline;
       color: rgb(0, 61, 140);
       transition: all 0.5s;
     }
   }
 
+
   &Button {
     display: flex;
+    align-items: center;
+    gap: 30px;
+
+    &Create {
+      font-family: 'Inter';
+      color: #52C41A;
+      font-size: 14px;
+      padding: 6px 11px;
+      border: 1px solid #52C41A;
+      border-radius: 5px;
+    }
 
     &Active {
       display: flex;

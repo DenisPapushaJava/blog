@@ -1,6 +1,8 @@
 import styles from './index.module.scss';
 import { Link } from 'react-router-dom';
+import { Avatar, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { logOut } from '../../../../store/user-slice.js';
 import baseAvatar from '../../../../assets/avatarDefolt.png';
 
 const Header = () => {
@@ -8,15 +10,38 @@ const Header = () => {
   const isLogin = useSelector((state) => state.user.isLogin);
   const userName = useSelector((state) => state.user.username);
   const avatarUrl = useSelector((state) => state.user.image);
-  const path = avatarUrl ? avatarUrl : baseAvatar;
+  const pathAvatar = avatarUrl ? avatarUrl : baseAvatar;
   const statusUser = useSelector((state) => state.user.status);
   const statusArticle = useSelector((state) => state.articles.status);
 
   return (<div className={styles.headerWrapper}>
     <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : '/'}>Realworld Blog</Link>
     <nav className={styles.headerWrapperButton}>
-      <Link to='/sign-in' className={styles.headerWrapperButtonActive}>Sign In</Link>
-      <Link to='/sign-up' className={styles.headerWrapperButtonActive}>Sign Up</Link>
+      {!isLogin && (
+        <>
+          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : 'sign-in'}
+                className={styles.headerWrapperButtonActive}>Sign In</Link>
+          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : 'sign-up'}
+                className={styles.headerWrapperButtonActive}>Sign Up</Link>
+        </>
+      )}
+      {isLogin && (
+        <>
+          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : 'new-article'}
+                className={styles.headerWrapperButtonCreate}
+          >
+            Create article
+          </Link>
+          <p>{userName}</p>
+          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : 'profile'}>
+            <Avatar src={pathAvatar} />
+          </Link>
+          <Button onClick={() => dispatch(logOut())}>
+            Log Out
+          </Button>
+        </>
+      )}
+
     </nav>
   </div>);
 };
