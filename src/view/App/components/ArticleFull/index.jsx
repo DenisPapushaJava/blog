@@ -16,7 +16,7 @@ const ArticleFull = () => {
 
   const elements = status === 'resolved' && article ? (
     <div className={styles.article}>
-      <Article article={article} editButton={true} />
+      <Article article={article} editButton={true} articleFull={true} />
       <ReactMarkdown className={styles.articleText}>{article.body}</ReactMarkdown>
 
     </div>

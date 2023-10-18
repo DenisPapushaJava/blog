@@ -2,6 +2,7 @@ import { Tag, Avatar, message, Popconfirm, Checkbox, Button } from 'antd';
 
 import noLike from '../../../../assets/noLike.svg';
 import like from '../../../../assets/like.svg';
+import defaultAvatar from '../../../../assets/avatarDefolt.png';
 import styles from './index.module.scss';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,8 +15,9 @@ import { format } from 'date-fns';
 import { v4 } from 'uuid';
 import { enGB } from 'date-fns/locale';
 import { Link, useNavigate } from 'react-router-dom';
+import { PATH } from '../../../../constans/index.js';
 
-const Article = ({ article, editButton }) => {
+const Article = ({ article, editButton, articleFull = false }) => {
 
   const dispatch = useDispatch();
   const userName = useSelector((state) => state.user.username);
@@ -25,6 +27,7 @@ const Article = ({ article, editButton }) => {
   const [favoriteChecked, setFavoriteChecked] = useState(article?.favorited || false);
   const [favoriteCount, setFavoriteCount] = useState(article.favoritesCount);
 
+  const DEFAULT_URL_IMG = 'https://static.productionready.io/images/smiley-cyrus.jpg';
   const onChecked = (event) => {
     if (event.target.click && !favoriteChecked) {
       dispatch(fetchFavorites(article.slug));
@@ -51,11 +54,11 @@ const Article = ({ article, editButton }) => {
   );
   return (
     <>
-      <div className={styles.article}>
+      <div className={articleFull ? styles.articleFull : styles.article}>
         <div className={styles.articleLeft}>
           <div className={styles.articleLeftTitle}>
-            <h1 className={styles.articleLeftTitleText}>
-              <Link to={`/articles/${article.slug}`}>
+            <h1 className={articleFull ? styles.articleLeftTitleFull : styles.articleLeftTitleText}>
+              <Link to={articleFull ? null : `${PATH.articles}/${article.slug}`}>
                 {article.title}
               </Link>
             </h1>
@@ -74,7 +77,7 @@ const Article = ({ article, editButton }) => {
           <>
             {elementsTag}
           </>
-          <p className={styles.articleLeftText}>{article.description}</p>
+          <p className={articleFull ? styles.articleLeftTextFull : styles.articleLeftText}>{article.description}</p>
 
 
         </div>
@@ -90,7 +93,8 @@ const Article = ({ article, editButton }) => {
                 })}
               </p>
             </div>
-            <Avatar className={styles.articleRightAvatar} size='large' src={article.author.image} />
+            <Avatar className={styles.articleRightAvatar} size='large'
+                    src={article.author.image === DEFAULT_URL_IMG ? defaultAvatar : article.author.image} />
           </div>
           <div className={styles.articleRightBottom}>
             {editButton && userName === article.author.username && (
@@ -108,7 +112,7 @@ const Article = ({ article, editButton }) => {
                     Delete
                   </Button>
                 </Popconfirm>
-                <Link className={styles.articleRightBottomEdit} to={`/articles/${article.slug}/edit`}>
+                <Link className={styles.articleRightBottomEdit} to={`/${PATH.articles}/${article.slug}/edit`}>
                   Edit
                 </Link>
 

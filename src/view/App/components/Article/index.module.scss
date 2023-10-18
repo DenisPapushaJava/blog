@@ -9,12 +9,29 @@
   padding: 15px 15px 24px 15px;
   box-shadow: 0 4px 12px #00000026;
 
+  &Full {
+    display: flex;
+    justify-content: space-between;
+    width: 940px;
+    height: 100%;
+    background-color: #fff;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 15px 15px 24px 15px;
+    box-shadow: 0 4px 12px #00000026;
+  }
+
   &Left {
     max-width: 682px;
 
     &Text {
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      &Full {
+        white-space: normal;
+      }
     }
 
     &Title {
@@ -24,8 +41,17 @@
       font-size: 20px;
 
       &Text {
+        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        font-family: Inter;
+        font-weight: 400;
+        font-size: 20px;
+      }
+
+      &Full {
+        font-size: 20px;
+        white-space: normal;
 
       }
 
