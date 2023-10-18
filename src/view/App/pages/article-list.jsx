@@ -10,7 +10,6 @@ const ArticleList = () => {
   const dispatch = useDispatch();
 
   const countArticles = useSelector((state) => state.articles.count);
-  const err = useSelector((state) => state.articles.error);
   const status = useSelector((state) => state.articles.status);
   const isLogin = useSelector((state) => state.user.isLogin);
   const articles = useSelector((state) => state.articles.articles);
@@ -20,8 +19,8 @@ const ArticleList = () => {
   }, [dispatch, page, isLogin]);
 
 
-  const elmentsArticles = status === 'resolved' ? articles.map((article) => <Article article={article}
-                                                                                     key={article.slug} />) : null;
+  const elementsArticles = status === 'resolved' ? articles.map((article) => <Article article={article}
+                                                                                      key={article.slug} />) : null;
 
   const handleChang = (current) => {
     setPage(current);
@@ -37,7 +36,7 @@ const ArticleList = () => {
     >
       {status === 'loading' ? <Spin size='large' /> :
         <>
-          {elmentsArticles}
+          {elementsArticles}
           <Pagination defaultCurrent={page}
                       total={countArticles}
                       showSizeChanger={false}

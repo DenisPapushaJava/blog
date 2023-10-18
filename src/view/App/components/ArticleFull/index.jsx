@@ -18,6 +18,7 @@ const ArticleFull = () => {
     <div className={styles.article}>
       <Article article={article} editButton={true} />
       <ReactMarkdown className={styles.articleText}>{article.body}</ReactMarkdown>
+
     </div>
   ) : null;
   useEffect(() => {

@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../../../store/user-slice.js';
 import baseAvatar from '../../../../assets/avatarDefolt.png';
 
+import { PATH } from '../../../../constans/index.js';
+
 const Header = () => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.user.isLogin);
@@ -19,21 +21,21 @@ const Header = () => {
     <nav className={styles.headerWrapperButton}>
       {!isLogin && (
         <>
-          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : 'sign-in'}
+          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : `${PATH.singIn}`}
                 className={styles.headerWrapperButtonActive}>Sign In</Link>
-          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : 'sign-up'}
+          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : `${PATH.singUp}`}
                 className={styles.headerWrapperButtonActive}>Sign Up</Link>
         </>
       )}
       {isLogin && (
         <>
-          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : 'new-article'}
+          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : `${PATH.newArticle}`}
                 className={styles.headerWrapperButtonCreate}
           >
             Create article
           </Link>
           <p>{userName}</p>
-          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : 'profile'}>
+          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : `${PATH.profile}`}>
             <Avatar src={pathAvatar} />
           </Link>
           <Button onClick={() => dispatch(logOut())}>

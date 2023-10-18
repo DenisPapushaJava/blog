@@ -9,7 +9,7 @@ export const singUpUser = createAsyncThunk(
     blogUser.singUpUser(username, email, password).catch((err) =>
       rejectWithValue({
         status: err.response.status,
-        statusText: 'Не верные данные. Логин или email уже существуют!',
+        statusText: 'Логин или email уже существуют!',
       })
     )
 );
@@ -25,7 +25,8 @@ export const loginUser = createAsyncThunk('user/loginUser', async ({ email, pass
 
 export const updateUserProfile = createAsyncThunk(
   'user/updateUserProfile',
-  async ({ username, email, password, avatarUrl: image }, { rejectWithValue }) => {
+  async ({ username, email, password, image }, { rejectWithValue }) => {
+   console.log("1111", username, email, image)
     return blogUser.updateUserProfile(username, email, password, image).catch((err) =>
       rejectWithValue({
         status: err.response.status,

@@ -1,13 +1,11 @@
 import { Tag, Avatar, message, Popconfirm, Checkbox, Button } from 'antd';
 
 import noLike from '../../../../assets/noLike.svg';
-import avatarDefault from '../../../../assets/avatarDefolt.png';
 import like from '../../../../assets/like.svg';
 import styles from './index.module.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  fetchArticles,
   fetchDeleteArticle,
   fetchDeleteFavorites,
   fetchFavorites,
@@ -28,7 +26,7 @@ const Article = ({ article, editButton }) => {
   const [favoriteCount, setFavoriteCount] = useState(article.favoritesCount);
 
   const onChecked = (event) => {
-    if (event.target.checked) {
+    if (event.target.click && !favoriteChecked) {
       dispatch(fetchFavorites(article.slug));
       setFavoriteChecked(true);
       setFavoriteCount(favoriteCount + 1);

@@ -16,13 +16,12 @@ const EditProfileForm = ({ submit, user }) => {
     defaultValues: {
       username: user?.username,
       email: user?.email,
-      url: user?.image,
+      image: user?.image,
     },
   });
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
   const onSubmit = (data) => {
-    console.log(data);
     submit(data);
     reset();
   };
@@ -99,7 +98,7 @@ const EditProfileForm = ({ submit, user }) => {
             Avatar image (url)
           </p>
           <input placeholder='Avatar image'
-                 {...register('url', {
+                 {...register('image', {
                      required: 'Поле обязательно к заполнению',
                      validate: {
                        validUrl: (value) => validUrl.isWebUri(value) ? true : 'Некорректный URL',
@@ -107,7 +106,7 @@ const EditProfileForm = ({ submit, user }) => {
                    },
                  )}
           />
-          {errors.url && <div className={styles.containerLabelError}>{errors.url.message}</div>}
+          {errors.image && <div className={styles.containerLabelError}>{errors.image.message}</div>}
         </label>
 
 

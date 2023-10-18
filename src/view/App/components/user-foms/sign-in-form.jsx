@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import styles from './style.module.scss';
 import { Button } from 'antd';
 
+import { PATH } from '../../../../constans/index.js';
+
 
 const SignInForm = ({ submit }) => {
   const {
@@ -65,7 +67,7 @@ const SignInForm = ({ submit }) => {
         >Login
         </Button>
         <p className={styles.containerFooter}>
-          Don’t have an account?<Link to='/sign-up'> Sign Up.</Link>
+          Don’t have an account?<Link to={PATH.singUp}> Sign Up.</Link>
         </p>
       </form>
     </div>
