@@ -10,8 +10,8 @@ export const singUpUser = createAsyncThunk(
       rejectWithValue({
         status: err.response.status,
         statusText: 'Логин или email уже существуют!',
-      })
-    )
+      }),
+    ),
 );
 
 export const loginUser = createAsyncThunk('user/loginUser', async ({ email, password }, { rejectWithValue }) =>
@@ -19,25 +19,24 @@ export const loginUser = createAsyncThunk('user/loginUser', async ({ email, pass
     rejectWithValue({
       status: err.response.status,
       statusText: 'Логин или пароль не верные',
-    })
-  )
+    }),
+  ),
 );
 
 export const updateUserProfile = createAsyncThunk(
   'user/updateUserProfile',
   async ({ username, email, password, image }, { rejectWithValue }) => {
-   console.log("1111", username, email, image)
     return blogUser.updateUserProfile(username, email, password, image).catch((err) =>
       rejectWithValue({
         status: err.response.status,
         statusText: 'Данные не изменились. Проверте заполнение полей!',
-      })
+      }),
     );
-  }
+  },
 );
 
 export const getCurrentUser = createAsyncThunk('user/getCurrentUser ', async (_, { rejectWithValue }) =>
-  blogUser.getCurrentUser().catch((err) => rejectWithValue(err.message))
+  blogUser.getCurrentUser().catch((err) => rejectWithValue(err.message)),
 );
 
 const pending = (state) => {
