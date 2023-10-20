@@ -19,7 +19,6 @@ const SignUpForm = ({ submit }) => {
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   const onSubmit = (data) => {
     submit(data);
-    reset();
   };
 
   return (
@@ -118,7 +117,7 @@ const SignUpForm = ({ submit }) => {
                 size='large'
         >Create</Button>
         <p className={styles.containerFooter}>
-          Already have an account?<Link to={PATH.singIn}> Sign In.</Link>
+          Already have an account?<Link to={`/${PATH.singIn}`}> Sign In.</Link>
         </p>
       </form>
     </div>

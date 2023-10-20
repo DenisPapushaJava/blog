@@ -21,21 +21,21 @@ const Header = () => {
     <nav className={styles.headerWrapperButton}>
       {!isLogin && (
         <>
-          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : `${PATH.singIn}`}
+          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : `/${PATH.singIn}`}
                 className={styles.headerWrapperButtonActive}>Sign In</Link>
-          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : `${PATH.singUp}`}
+          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : `/${PATH.singUp}`}
                 className={styles.headerWrapperButtonActive}>Sign Up</Link>
         </>
       )}
       {isLogin && (
         <>
-          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : `${PATH.newArticle}`}
+          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : `/${PATH.newArticle}`}
                 className={styles.headerWrapperButtonCreate}
           >
             Create article
           </Link>
           <p>{userName}</p>
-          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : `${PATH.profile}`}>
+          <Link to={statusUser === 'loading' || statusArticle === 'loading' ? '#' : `/${PATH.profile}`}>
             <Avatar src={pathAvatar} />
           </Link>
           <Button onClick={() => dispatch(logOut())}>

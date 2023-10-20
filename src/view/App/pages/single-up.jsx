@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { isSetNotUserCreate, loginUser, singUpUser } from '../../../store/user-slice.js';
 import { ErrorMessage } from '../components/errorMessage/index.jsx';
 import SignUpForm from '../components/user-foms/sign-up-form.jsx';
 
 
 const SignUp = () => {
+  const [dataLocal, setDataLocal] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const status = useSelector((state) => state.user.status);
@@ -17,17 +18,20 @@ const SignUp = () => {
     if (status === 'resolved' && isCreateUser) {
       dispatch(isSetNotUserCreate());
       navigate('/', { replace: true });
+      dispatch(loginUser(dataLocal));
     }
   }, [isCreateUser, status, navigate, dispatch]);
 
-  const singLogin = (data) => {
-    dispatch(singUpUser(data)).then(() => dispatch(loginUser(data)));
+
+  const singUpLogin = (data) => {
+    setDataLocal(data);
+    dispatch(singUpUser(data));
   };
 
   return (
     <>
       {err && <ErrorMessage />}
-      <SignUpForm submit={(data) => singLogin(data)} />
+      <SignUpForm submit={(data) => singUpLogin(data)} />
     </>
   );
 };
